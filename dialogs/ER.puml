@@ -1,0 +1,31 @@
+@startuml ER
+entity "users" {
+  id [PK]
+  --
+  name [名前]
+  coin [手持ちコイン]
+  picture [プロフィール写真]
+}
+entity "board" {
+  id [PK]
+  --
+  user_id [投稿者のid]
+  board_content [投稿の中身]
+  created_at [作成時間]
+}
+entity "bet_contents" {
+  id [PK]
+  --
+  title [賭けのタイトル]
+  text [賭けの内容]
+  picture_name [写真の名前]
+  bet_genre [賭けのジャンル]
+  bet_content_name_A [賭ける物の名前A]
+  bet_content_name_B [賭ける物の名前B]
+  total_bet_coin_A [Aに賭けられたコインの総額]
+  total_bet_coin_B [Bに賭けられたコインの総額]
+  expiration [賭けの期限]
+  status [賭けの状況]
+}
+users ||--o{ board
+@enduml
