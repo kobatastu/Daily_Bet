@@ -2,6 +2,10 @@ import { Link, Route } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import HomeIcon from '@material-ui/icons/Home';
+import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import StoreIcon from '@material-ui/icons/Store';
 
 import { HomeScreen } from '../screens/HomeScreen/HomeScreen';
 import { MyBetScreen } from '../screens/MyBetScreen/MyBetScreen';
@@ -13,10 +17,10 @@ export const MainRouter = () => {
     <div>
       <AppBar position="static" color="default">
         <Tabs value={false} indicatorColor="primary" textColor="primary" variant="fullWidth">
-          <Tab label="Home" to="/main/home" component={Link} />
-          <Tab label="MyBet" to="/main/mybet" component={Link} />
-          <Tab label="Board" to="/main/board" component={Link} />
-          <Tab label="CoinMarket" to="/main/coinmarket" component={Link} />
+          <Tab icon={<HomeIcon />} to="/main/home" component={Link} />
+          <Tab icon={<MonetizationOnIcon />} to="/main/mybet" component={Link} />
+          <Tab icon={<AssignmentIcon />} to="/main/board" component={Link} />
+          <Tab icon={<StoreIcon />} to="/main/coinmarket" component={Link} />
         </Tabs>
       </AppBar>
       <Route exact path="/main/home" component={HomeScreen} />
