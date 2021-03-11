@@ -1,0 +1,1 @@
+../../client/src/serverTypes/betContentsTypes.ts

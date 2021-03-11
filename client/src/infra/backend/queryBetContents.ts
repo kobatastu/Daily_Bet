@@ -1,12 +1,12 @@
 import { fetchBackend } from '../utils/fetchBackend';
-import { BoardData, isBoardDatasType } from '../../serverTypes/boardTypes';
+import { BetContentsData, isBetContentsDatasType } from '../../serverTypes/betContentsTypes';
 
 const convertDate = (data: unknown) => {
   try {
-    const boardData = data as BoardData;
+    const betContentsData = data as BetContentsData;
     return {
-      ...boardData,
-      created_at: new Date(boardData.created_at),
+      ...betContentsData,
+      expiration: new Date(betContentsData.expiration),
     };
   } catch (e) {
     throw new Error('cannot convert the date');
@@ -15,22 +15,22 @@ const convertDate = (data: unknown) => {
 
 const convertDateForArray = (datas: unknown) => {
   try {
-    const boardDatas = datas as BoardData[];
-    return boardDatas.map(convertDate);
+    const betContentsDatas = datas as BetContentsData[];
+    return betContentsDatas.map(convertDate);
   } catch (e) {
     throw new Error('cannot convert the dates');
   }
 };
 
-export const queryBoard = async () => {
-  const response = await fetchBackend('client/board', {
+export const queryBetContents = async () => {
+  const response = await fetchBackend('client/contents', {
     method: 'GET',
   });
   if (!response.success) {
     throw new Error('response is not success');
   }
   const data = convertDateForArray(response.data);
-  if (!isBoardDatasType(data)) {
+  if (!isBetContentsDatasType(data)) {
     throw new Error('Type is not correct');
   }
   return data;

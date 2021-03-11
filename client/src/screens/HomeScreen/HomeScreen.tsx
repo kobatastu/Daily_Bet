@@ -1,27 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
 import { Timer } from './Timer';
-
-const betContents = [
-  {
-    title: '賭けタイトル',
-    text: '賭けメッセージ',
-    picture_name: 'logo192.png',
-    bet_genre: 'スポーツ',
-    bet_content_name_A: '賭けA',
-    bet_content_name_B: '賭けB',
-    total_bet_coin_A: 200,
-    total_bet_coin_B: 300,
-    expiration: 'a',
-    status: 'X',
-  },
-];
+import { useQueryBetContents } from '../../hooks/fetcher/useQueryBetContents';
+import type { BetContentsData } from '../../serverTypes/betContentsTypes';
 
 export const HomeScreen: React.FC = () => {
+  const [betContents, setBetContens] = useState<BetContentsData[] | null>(null);
+  const { querying, data } = useQueryBetContents();
+
+  useEffect(() => {
+    setBetContens(data);
+  }, [data]);
+
+  if (querying || !betContents) return <div>Loading..</div>;
+
   return (
     <div>
       {betContents.map((betContent) => (
