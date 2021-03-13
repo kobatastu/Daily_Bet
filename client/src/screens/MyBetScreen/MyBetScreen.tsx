@@ -9,20 +9,6 @@ import { OddsCalcurator } from '../components/OddsCalcurator';
 import { useQueryMyBetContents } from '../../hooks/fetcher/useQueryMyBetContents';
 import type { MyBetContentsData } from '../../serverTypes/myBetContentsTypes';
 
-// const bets = [
-//   {
-//     id: 1,
-//     title: 'hoge',
-//     which: 'A',
-//     Aname: 'fuga',
-//     Bname: 'haga',
-//     betValue: 200,
-//     status: 'A',
-//     Atotal: 2000,
-//     Btotal: 5000,
-//   },
-// ];
-
 export const MyBetScreen = () => {
   const [myBetContents, setMyBetContens] = useState<MyBetContentsData[] | null>(null);
   const { querying, data } = useQueryMyBetContents('1');
@@ -48,7 +34,6 @@ export const MyBetScreen = () => {
               <Typography variant="h5" component="h2" style={{ margin: '10px 0 20px 0' }}>
                 {myBetContent.title}
               </Typography>
-
               <div style={{ textAlign: 'center' }}>
                 {myBetContent.which === 'A' && (
                   <p>
@@ -65,7 +50,6 @@ export const MyBetScreen = () => {
                   </p>
                 )}
               </div>
-
               <div style={{ textAlign: 'center' }}>
                 {myBetContent.status === 'X' && <p>勝敗はまだ決していません</p>}
                 {myBetContent.status === 'A' && (
@@ -79,7 +63,6 @@ export const MyBetScreen = () => {
                   </p>
                 )}
               </div>
-
               <h4>オッズ</h4>
               <Grid container spacing={3}>
                 <Grid item xs={6}>

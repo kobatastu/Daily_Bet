@@ -20,8 +20,8 @@ export const HomeScreen: React.FC = () => {
 
   return (
     <div>
-      {betContents.map((betContent) => (
-        <>
+      {betContents.map((betContent, index) => (
+        <div key={index}>
           <Card
             style={{
               maxWidth: 400,
@@ -55,7 +55,7 @@ export const HomeScreen: React.FC = () => {
               </div>
             </CardContent>
           </Card>
-        </>
+        </div>
       ))}
     </div>
   );
