@@ -2,7 +2,7 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
-import { Odds } from './Odds';
+import { OddsCalcurator } from './OddsCalcurator';
 
 type Props = {
   status: string;
@@ -12,7 +12,7 @@ type Props = {
   Btotal: number;
 };
 
-export const Finish: React.FC<Props> = (props) => {
+export const BetsResult: React.FC<Props> = (props) => {
   return (
     <div>
       <div style={{ textAlign: 'center', color: 'red' }}>
@@ -36,7 +36,7 @@ export const Finish: React.FC<Props> = (props) => {
             color="red"
           >
             <p>{props.Aname}</p>
-            <Odds myval={props.Atotal} coval={props.Btotal} />
+            <OddsCalcurator myval={props.Atotal} coval={props.Btotal} />
           </Paper>
         </Grid>
         <Grid item xs={6}>
@@ -51,7 +51,7 @@ export const Finish: React.FC<Props> = (props) => {
             }}
           >
             <p>{props.Bname}</p>
-            <Odds myval={props.Btotal} coval={props.Atotal} />
+            <OddsCalcurator myval={props.Btotal} coval={props.Atotal} />
           </Paper>
         </Grid>
       </Grid>

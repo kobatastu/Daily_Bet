@@ -7,7 +7,7 @@ import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-import { Odds } from './Odds';
+import { OddsCalcurator } from './OddsCalcurator';
 
 type Props = {
   Atotal: number;
@@ -18,7 +18,7 @@ type Props = {
 
 const mycoin = 500;
 
-export const Bets: React.FC<Props> = (props) => {
+export const BetsForm: React.FC<Props> = (props) => {
   const [totalA, setTotalA] = useState(0);
   const [totalB, setTotalB] = useState(0);
   const [name, setName] = useState('');
@@ -60,7 +60,7 @@ export const Bets: React.FC<Props> = (props) => {
             color="red"
           >
             <p>{props.Aname}</p>
-            <Odds myval={totalA} coval={totalB} />
+            <OddsCalcurator myval={totalA} coval={totalB} />
           </Paper>
         </Grid>
         <Grid item xs={6}>
@@ -75,7 +75,7 @@ export const Bets: React.FC<Props> = (props) => {
             }}
           >
             <p>{props.Bname}</p>
-            <Odds myval={totalB} coval={totalA} />
+            <OddsCalcurator myval={totalB} coval={totalA} />
           </Paper>
         </Grid>
       </Grid>
