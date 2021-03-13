@@ -2,7 +2,7 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
-import { OddsCalcurator } from './OddsCalcurator';
+import { OddsCalcurator } from '../components/OddsCalcurator';
 
 type Props = {
   status: string;

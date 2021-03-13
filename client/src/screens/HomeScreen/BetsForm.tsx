@@ -7,7 +7,7 @@ import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-import { OddsCalcurator } from './OddsCalcurator';
+import { OddsCalcurator } from '../components/OddsCalcurator';
 
 type Props = {
   Atotal: number;

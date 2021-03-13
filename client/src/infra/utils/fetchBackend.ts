@@ -24,12 +24,10 @@ const fetchWithNetworkErrorHandring = async (input: RequestInfo, init: RequestIn
 
 export const fetchBackend = async (endpoint: string, options: FetchOptions) => {
   const response = await fetchWithNetworkErrorHandring(`${backendUrl}/${endpoint}`, options);
-  console.log(response);
   if (!response.ok) {
     throw new Error('Response is not ok');
   }
   const data = await response.json();
-  console.log(data);
   if (!isResponseType(data)) {
     throw new Error('Response type is not correct');
   }

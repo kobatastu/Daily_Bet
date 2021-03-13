@@ -1,5 +1,6 @@
 import { fetchBackend } from '../utils/fetchBackend';
-import { BetContentsData, isBetContentsDatasType } from '../../serverTypes/betContentsTypes';
+import { isBetContentsDatasType } from '../../serverTypes/betContentsTypes';
+import type { BetContentsData } from '../../serverTypes/betContentsTypes';
 
 const convertDate = (data: unknown) => {
   try {

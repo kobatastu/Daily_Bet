@@ -23,7 +23,6 @@ export const isResponseType = (apiResponse: Response): apiResponse is Response =
   guardRunTimeError(() => {
     const res = apiResponse as Response;
     if (res.success === true) {
-      console.log('ここ', res.data);
       return res.data !== undefined;
     }
     return Object.values(errorCodeMap).includes(res.errorCode);

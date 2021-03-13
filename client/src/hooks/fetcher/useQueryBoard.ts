@@ -7,7 +7,6 @@ export const useQueryBoard = () => {
   const [data, setData] = useState<BoardData[] | null>(null);
   const queryData = useCallback(async () => {
     try {
-      console.log('ここ');
       setQuerying(true);
       const boardData = await queryBoard();
       setData(boardData);

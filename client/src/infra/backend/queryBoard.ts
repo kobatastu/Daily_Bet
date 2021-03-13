@@ -1,5 +1,6 @@
 import { fetchBackend } from '../utils/fetchBackend';
-import { BoardData, isBoardDatasType } from '../../serverTypes/boardTypes';
+import { isBoardDatasType } from '../../serverTypes/boardTypes';
+import type { BoardData } from '../../serverTypes/boardTypes';
 
 const convertDate = (data: unknown) => {
   try {

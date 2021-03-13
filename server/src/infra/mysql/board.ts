@@ -3,7 +3,6 @@ import { isBoardDatasType } from '../../../serverTypes/boardTypes';
 
 export const getBoardData = async (sql: string) => {
   const data = await getMysqlData(sql);
-  console.log(data);
 
   if (!isBoardDatasType(data)) {
     throw new Error('Type is not correct');

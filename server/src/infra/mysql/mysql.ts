@@ -3,9 +3,9 @@ import mysql from 'mysql';
 
 const MYSQL_CONFIG = config.get('MYSQL_CONFIG');
 
-const queryMysqlData = (connection: mysql.Connection, sql: string) => {
+const queryMysqlData = (connection: mysql.Connection, sql: string, data?) => {
   return new Promise((resolve, reject) => {
-    connection.query(sql, (err, data) => {
+    connection.query(sql, data, (err, data) => {
       if (err) {
         reject(err);
       } else {
@@ -27,20 +27,20 @@ const mutateMysqlData = (connection: mysql.Connection, sql: string, data) => {
   });
 };
 
-export const getMysqlData = async (sql: string) => {
+export const getMysqlData = async (sql: string, data?) => {
   const connection = mysql.createConnection(MYSQL_CONFIG);
   connection.connect();
-  const data = await queryMysqlData(connection, sql)
+  const queryData = await queryMysqlData(connection, sql, data)
     .then(
-      (data) => {
-        return data;
+      (queryData) => {
+        return queryData;
       },
       (err) => {
         throw new Error(`runtime:${err}`);
       }
     )
     .finally(() => connection.end());
-  return data;
+  return queryData;
 };
 
 export const postMysqlData = async (sql: string, data) => {

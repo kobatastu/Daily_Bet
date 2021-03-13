@@ -2,6 +2,8 @@
 entity "users" {
   id [PK]
   --
+  account [アカウント（未設定）]
+  password [パスワード（未設定）]
   name [名前]
   coin [手持ちコイン]
   picture [プロフィール写真]
@@ -26,6 +28,14 @@ entity "bet_contents" {
   total_bet_coin_B [Bに賭けられたコインの総額]
   expiration [賭けの期限]
   status [賭けの状況]
+}
+entity "bet_coin" {
+  id [PK]
+  --
+  user_id [賭けをしたユーザーのID]
+  bet_contents_id [賭けたコンテンツのID]
+  which [賭けた方]
+  bet_coin_amount [賭けたコインの額]
 }
 users ||--o{ board
 @enduml
