@@ -5,10 +5,13 @@ type PostHeaders = {
   'Content-Type': string;
 };
 
+type Credentials = 'omit' | 'same-origin' | 'include';
+
 type FetchOptions = {
   method: 'GET' | 'POST' | 'PUT' | 'DELETE';
   body?: string;
   headers?: PostHeaders;
+  credentials: Credentials;
 };
 
 // const backendUrl = config.get<string>('BACKEND_URL');

@@ -3,15 +3,11 @@ import { Request, Response } from 'express';
 import { postMyBoughtCoin as myBoughtCoinData } from '../../service/myBoughtCoin';
 import { errorCodeMap } from '../../../serverTypes/apiTypes';
 import { guardRunTimeError } from '../../../common/guardRunTimeError';
+import type { PostMyBoughtCoinData } from '../../../serverTypes/myBoughtCoinTypes';
 
-type RequestBody = {
-  my_bought_coin: number;
-  user_id: number;
-};
-
-const isRequestBodyType = (requestBody: unknown): requestBody is RequestBody =>
+const isRequestBodyType = (requestBody: unknown): requestBody is PostMyBoughtCoinData =>
   guardRunTimeError(() => {
-    const { my_bought_coin, user_id } = requestBody as RequestBody;
+    const { my_bought_coin, user_id } = requestBody as PostMyBoughtCoinData;
     if (typeof my_bought_coin === 'number' && typeof user_id === 'number') {
       return true;
     }

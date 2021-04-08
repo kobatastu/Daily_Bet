@@ -2,11 +2,12 @@
 entity "users" {
   id [PK]
   --
-  account [アカウント（未設定）]
+  email [メールアドレス（未設定）]
   password [パスワード（未設定）]
   name [名前]
   coin [手持ちコイン]
   picture [プロフィール写真]
+  life_flag [アカウントが有効かどうかのフラグ]
 }
 entity "board" {
   id [PK]

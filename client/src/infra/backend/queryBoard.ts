@@ -26,6 +26,7 @@ const convertDateForArray = (datas: unknown) => {
 export const queryBoard = async () => {
   const response = await fetchBackend('client/board', {
     method: 'GET',
+    credentials: 'include',
   });
   if (!response.success) {
     throw new Error('response is not success');

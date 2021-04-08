@@ -11,9 +11,6 @@ import { useMutationMyBoughtCoin } from '../../hooks/fetcher/useMutationMyBought
 export const CoinMarketScreen = () => {
   const [coin, setCoin] = useState(0);
   const { mutate } = useMutationMyBoughtCoin();
-  const submit = () => {
-    mutate({ user_id: 1, my_bought_coin: coin });
-  };
 
   return (
     <div>
@@ -67,7 +64,11 @@ export const CoinMarketScreen = () => {
             </Grid>
           </div>
           <div style={{ textAlign: 'center', margin: '30px auto' }}>
-            <Button variant="contained" color="primary" onClick={submit}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => mutate({ user_id: 1, my_bought_coin: coin })}
+            >
               購入
             </Button>
           </div>

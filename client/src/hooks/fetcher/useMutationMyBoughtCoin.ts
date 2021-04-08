@@ -10,7 +10,7 @@ export const useMutationMyBoughtCoin = () => {
       await mutationMyBoughtCoin(myBoughtCoinData);
       setMutating(false);
     } catch (e) {
-      throw new Error(`cannot get the board data :${e}`);
+      throw new Error(`cannot update my bought coin data :${e}`);
     }
   }, []);
   return { mutating, mutate };

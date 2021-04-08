@@ -3,6 +3,7 @@ import { guardRunTimeError } from '../common/guardRunTimeError';
 export const errorCodeMap = {
   internalServerError: 'INTERNAL_SERVER_ERROR',
   badRequest: 'BAD_REQUEST',
+  unauthorized: 'UNAUTHORIZED',
 } as const;
 type ValueOf<T> = T[keyof T];
 type ErrorCode = ValueOf<typeof errorCodeMap>;

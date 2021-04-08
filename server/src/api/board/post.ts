@@ -3,15 +3,11 @@ import { Request, Response } from 'express';
 import { postBoard as boardData } from '../../service/board';
 import { errorCodeMap } from '../../../serverTypes/apiTypes';
 import { guardRunTimeError } from '../../../common/guardRunTimeError';
+import type { PostBoardData } from '../../../serverTypes/boardTypes';
 
-type RequestBody = {
-  user_id: string;
-  board_content: string;
-};
-
-const isRequestBodyType = (requestBody: unknown): requestBody is RequestBody =>
+const isRequestBodyType = (requestBody: unknown): requestBody is PostBoardData =>
   guardRunTimeError(() => {
-    const { user_id, board_content } = requestBody as RequestBody;
+    const { user_id, board_content } = requestBody as PostBoardData;
     if (typeof user_id === 'string' && typeof board_content === 'string') {
       return true;
     }

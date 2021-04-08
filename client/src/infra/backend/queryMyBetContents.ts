@@ -26,6 +26,7 @@ const convertDateForArray = (datas: unknown) => {
 export const queryMyBetContents = async (userId: string) => {
   const response = await fetchBackend(`client/myBetContents?user_id=${userId}`, {
     method: 'GET',
+    credentials: 'include',
   });
   if (!response.success) {
     throw new Error('response is not success');

@@ -8,6 +8,7 @@ export const mutationBoard = async (data: PostBoardData) => {
     headers: {
       'Content-Type': 'application/json',
     },
+    credentials: 'include',
   });
   if (!response.success) {
     throw new Error('response is not success');
