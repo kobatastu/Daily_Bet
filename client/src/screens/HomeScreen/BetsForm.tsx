@@ -8,6 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 import { OddsCalcurator } from '../components/OddsCalcurator';
+import { useAuth } from '../../hooks/useAuth';
 
 type Props = {
   Atotal: number;
@@ -16,13 +17,12 @@ type Props = {
   Bname: string;
 };
 
-const mycoin = 500;
-
 export const BetsForm: React.FC<Props> = (props) => {
   const [totalA, setTotalA] = useState(0);
   const [totalB, setTotalB] = useState(0);
   const [name, setName] = useState('');
   const [bet, setBet] = useState(0);
+  const { user } = useAuth();
 
   const { Atotal, Btotal } = props;
 
@@ -31,17 +31,7 @@ export const BetsForm: React.FC<Props> = (props) => {
     setTotalB(Btotal);
   }, []);
 
-  const submit = () => {
-    if (mycoin < bet) {
-      alert('コインが足りません');
-    } else {
-      if (name === 'A') {
-        setTotalA(totalA + bet);
-      } else {
-        setTotalB(totalB + bet);
-      }
-    }
-  };
+  if (!user) return <div>Loading...</div>;
 
   return (
     <div>
@@ -109,7 +99,17 @@ export const BetsForm: React.FC<Props> = (props) => {
         <Button
           variant="outlined"
           color="secondary"
-          onClick={() => submit()}
+          onClick={() => {
+            if (user.coin < bet) {
+              alert('コインが足りません');
+            } else {
+              if (name === 'A') {
+                setTotalA(totalA + bet);
+              } else {
+                setTotalB(totalB + bet);
+              }
+            }
+          }}
           style={{ marginBottom: '20px' }}
         >
           Bet

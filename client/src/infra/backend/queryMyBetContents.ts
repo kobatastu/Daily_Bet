@@ -23,7 +23,7 @@ const convertDateForArray = (datas: unknown) => {
   }
 };
 
-export const queryMyBetContents = async (userId: string) => {
+export const queryMyBetContents = async (userId: number) => {
   const response = await fetchBackend(`client/myBetContents?user_id=${userId}`, {
     method: 'GET',
     credentials: 'include',
@@ -31,6 +31,7 @@ export const queryMyBetContents = async (userId: string) => {
   if (!response.success) {
     throw new Error('response is not success');
   }
+  if (!response.data) return [];
   const data = convertDateForArray(response.data);
   if (!isMyBetContentsDatasType(data)) {
     throw new Error('Type is not correct');

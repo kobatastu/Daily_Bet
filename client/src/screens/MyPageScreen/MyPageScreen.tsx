@@ -12,6 +12,8 @@ export const MyPageScreen = () => {
   const { signOut } = useProviderAuth();
   const history = useHistory();
 
+  if (!user) return <div>Loading..</div>;
+
   return (
     <div>
       <Card
@@ -28,7 +30,7 @@ export const MyPageScreen = () => {
                 <p>ユーザーネーム</p>
               </Grid>
               <Grid item xs={6}>
-                <p>{user?.name}</p>
+                <p>{user.name}</p>
               </Grid>
             </Grid>
           </div>
@@ -38,7 +40,7 @@ export const MyPageScreen = () => {
                 <p>所有コイン</p>
               </Grid>
               <Grid item xs={6}>
-                <p>{user?.coin}コイン</p>
+                <p>{user.coin}コイン</p>
               </Grid>
             </Grid>
           </div>

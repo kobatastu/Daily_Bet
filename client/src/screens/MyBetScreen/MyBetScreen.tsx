@@ -7,17 +7,23 @@ import Grid from '@material-ui/core/Grid';
 
 import { OddsCalcurator } from '../components/OddsCalcurator';
 import { useQueryMyBetContents } from '../../hooks/fetcher/useQueryMyBetContents';
+import { useAuth } from '../../hooks/useAuth';
 import type { MyBetContentsData } from '../../serverTypes/myBetContentsTypes';
 
-export const MyBetScreen = () => {
+type Props = {
+  id: number;
+};
+
+export const MyBetScreenContents: React.FC<Props> = ({ id }) => {
   const [myBetContents, setMyBetContens] = useState<MyBetContentsData[] | null>(null);
-  const { querying, data } = useQueryMyBetContents('1');
+  const { querying, data } = useQueryMyBetContents(id);
 
   useEffect(() => {
     setMyBetContens(data);
   }, [data]);
 
   if (querying || !myBetContents) return <div>Loading..</div>;
+  if (myBetContents.length === 0) return <div>There is no bet data</div>;
 
   return (
     <div>
@@ -109,4 +115,10 @@ export const MyBetScreen = () => {
       ))}
     </div>
   );
+};
+
+export const MyBetScreen = () => {
+  const { user } = useAuth();
+  if (!user) return <div>Loading..</div>;
+  return <MyBetScreenContents id={user.id} />;
 };

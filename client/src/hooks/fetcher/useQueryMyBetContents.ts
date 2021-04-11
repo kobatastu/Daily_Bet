@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { queryMyBetContents } from '../../infra/backend/queryMyBetContents';
 import type { MyBetContentsData } from '../../serverTypes/myBetContentsTypes';
 
-export const useQueryMyBetContents = (userId: string) => {
+export const useQueryMyBetContents = (userId: number) => {
   const [querying, setQuerying] = useState(false);
   const [data, setData] = useState<MyBetContentsData[] | null>(null);
   const queryData = useCallback(async () => {

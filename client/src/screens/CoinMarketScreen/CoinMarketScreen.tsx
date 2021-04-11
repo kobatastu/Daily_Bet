@@ -7,10 +7,14 @@ import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
 
 import { useMutationMyBoughtCoin } from '../../hooks/fetcher/useMutationMyBoughtCoin';
+import { useAuth } from '../../hooks/useAuth';
 
 export const CoinMarketScreen = () => {
   const [coin, setCoin] = useState(0);
   const { mutate } = useMutationMyBoughtCoin();
+  const { user } = useAuth();
+
+  if (!user) return <div>Loading..</div>;
 
   return (
     <div>
@@ -67,7 +71,8 @@ export const CoinMarketScreen = () => {
             <Button
               variant="contained"
               color="primary"
-              onClick={() => mutate({ user_id: 1, my_bought_coin: coin })}
+              disabled={!coin}
+              onClick={() => mutate({ user_id: user.id, my_bought_coin: coin })}
             >
               購入
             </Button>

@@ -1,4 +1,3 @@
-import config from 'config';
 import { isResponseType } from '../../serverTypes/apiTypes';
 
 type PostHeaders = {
@@ -14,8 +13,7 @@ type FetchOptions = {
   credentials: Credentials;
 };
 
-// const backendUrl = config.get<string>('BACKEND_URL');
-const backendUrl = 'http://localhost:8080';
+const backendUrl = process.env.REACT_APP_DEV_API_URL;
 
 const fetchWithNetworkErrorHandring = async (input: RequestInfo, init: RequestInit) => {
   try {

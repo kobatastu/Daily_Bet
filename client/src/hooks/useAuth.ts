@@ -11,7 +11,7 @@ type UserContext = {
 
 const defaultContext: UserContext = {
   user: null,
-  signIn: (user) => {},
+  signIn: () => {},
   signOut: () => {},
 };
 
