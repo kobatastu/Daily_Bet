@@ -5,6 +5,7 @@ import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 
+import { Loading } from '../components/Loading';
 import { useQueryBoard } from '../../hooks/fetcher/useQueryBoard';
 import { useMutationBoard } from '../../hooks/fetcher/useMutationBoard';
 import type { BoardData } from '../../serverTypes/boardTypes';
@@ -19,7 +20,7 @@ export const BoardScreen = () => {
     setMessages(data);
   }, [data]);
 
-  if (querying || !messages) return <div>Loading..</div>;
+  if (querying || !messages) return <Loading />;
 
   return (
     <div>

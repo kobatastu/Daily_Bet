@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
 
+import { Loading } from '../components/Loading';
 import { useMutationMyBoughtCoin } from '../../hooks/fetcher/useMutationMyBoughtCoin';
 import { useAuth } from '../../hooks/useAuth';
 
@@ -14,7 +15,7 @@ export const CoinMarketScreen = () => {
   const { mutate } = useMutationMyBoughtCoin();
   const { user } = useAuth();
 
-  if (!user) return <div>Loading..</div>;
+  if (!user) return <Loading />;
 
   return (
     <div>

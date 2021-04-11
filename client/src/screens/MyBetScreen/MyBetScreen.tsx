@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
+import { Loading } from '../components/Loading';
 import { OddsCalcurator } from '../components/OddsCalcurator';
 import { useQueryMyBetContents } from '../../hooks/fetcher/useQueryMyBetContents';
 import { useAuth } from '../../hooks/useAuth';
@@ -22,7 +23,7 @@ export const MyBetScreenContents: React.FC<Props> = ({ id }) => {
     setMyBetContens(data);
   }, [data]);
 
-  if (querying || !myBetContents) return <div>Loading..</div>;
+  if (querying || !myBetContents) return <Loading />;
   if (myBetContents.length === 0) return <div>There is no bet data</div>;
 
   return (

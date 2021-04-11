@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 
+import { Loading } from '../components/Loading';
 import { useAuth, useProviderAuth } from '../../hooks/useAuth';
 
 export const MyPageScreen = () => {
@@ -12,7 +13,7 @@ export const MyPageScreen = () => {
   const { signOut } = useProviderAuth();
   const history = useHistory();
 
-  if (!user) return <div>Loading..</div>;
+  if (!user) return <Loading />;
 
   return (
     <div>

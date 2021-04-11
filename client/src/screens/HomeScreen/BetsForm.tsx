@@ -7,6 +7,7 @@ import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
+import { Loading } from '../components/Loading';
 import { OddsCalcurator } from '../components/OddsCalcurator';
 import { useAuth } from '../../hooks/useAuth';
 
@@ -31,7 +32,7 @@ export const BetsForm: React.FC<Props> = (props) => {
     setTotalB(Btotal);
   }, []);
 
-  if (!user) return <div>Loading...</div>;
+  if (!user) return <Loading />;
 
   return (
     <div>

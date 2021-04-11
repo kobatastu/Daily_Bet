@@ -4,6 +4,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
+import { Loading } from '../components/Loading';
 import { Timer } from './Timer';
 import { useQueryBetContents } from '../../hooks/fetcher/useQueryBetContents';
 import type { BetContentsData } from '../../serverTypes/betContentsTypes';
@@ -16,7 +17,7 @@ export const HomeScreen: React.FC = () => {
     setBetContens(data);
   }, [data]);
 
-  if (querying || !betContents) return <div>Loading..</div>;
+  if (querying || !betContents) return <Loading />;
 
   return (
     <div>
