@@ -1,4 +1,4 @@
-import { getMysqlData } from './mysql';
+import { getMysqlData, postMysqlData } from './mysql';
 import { isLawUserDatasType, convertUserData } from '../../../serverTypes/userTypes';
 
 export const getUserData = async (sql: string, email: string) => {
@@ -10,4 +10,15 @@ export const getUserData = async (sql: string, email: string) => {
   if (userData.length === 0) return null;
 
   return convertUserData(userData[0]);
+};
+
+export const postUserData = async (sql: string, email: string, password: string, name: string) => {
+  await postMysqlData(sql, {
+    email,
+    password,
+    name,
+    coin: 0,
+    life_flag: 1,
+    picture: 'default.jpeg',
+  });
 };

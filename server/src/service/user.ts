@@ -1,7 +1,8 @@
 import bcrypt from 'bcrypt';
-import { getUserData } from '../infra/mysql/user';
+import { getUserData, postUserData } from '../infra/mysql/user';
 
 const sqlForPost = 'SELECT * from users where email =?';
+const sqlForAdd = 'INSERT INTO users set ?';
 
 export const checkLoginInfo = async (email: string, password: string) => {
   const user = await getUserData(sqlForPost, email);
@@ -12,4 +13,12 @@ export const checkLoginInfo = async (email: string, password: string) => {
     return user;
   }
   return null;
+};
+
+export const addUserInfo = async (email: string, password: string, name: string) => {
+  const hashedPassword = bcrypt.hashSync(password, 10);
+  await postUserData(sqlForAdd, email, hashedPassword, name);
+  const user = await getUserData(sqlForPost, email);
+  if (!user) return null;
+  return user;
 };

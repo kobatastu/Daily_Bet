@@ -5,10 +5,11 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth, useProviderAuth } from '../../hooks/useAuth';
 
 export const MyPageScreen = () => {
-  const { user, signOut } = useAuth();
+  const { user } = useAuth();
+  const { signOut } = useProviderAuth();
   const history = useHistory();
 
   return (

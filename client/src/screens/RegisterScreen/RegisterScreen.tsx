@@ -6,24 +6,25 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 
-import { useQueryLogin } from '../../hooks/fetcher/useQueryLogin';
+import { useMutationUser } from '../../hooks/fetcher/useMutationUser';
 import { userContext } from '../../hooks/useAuth';
 import type { UserData } from '../../serverTypes/userTypes';
 
-export const LoginScreen = () => {
+export const RegisterScreen = () => {
   const [email, setEmail] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
+  const [name, setName] = useState<string | null>(null);
   const [isLoginFailed, setIsLoginFailed] = useState(false);
 
-  const { query } = useQueryLogin();
+  const { mutate } = useMutationUser();
   const ctx = useContext(userContext);
   const history = useHistory();
 
   const signIn = (user: UserData) => ctx.signIn(user);
 
   const onSubmit = async () => {
-    if (!email || !password) return;
-    const user = await query({ email, password });
+    if (!email || !password || !name) return;
+    const user = await mutate({ email, password, name });
     if (!user) {
       setIsLoginFailed(true);
       return;
@@ -44,8 +45,8 @@ export const LoginScreen = () => {
         <CardContent>
           {isLoginFailed && <p>メールアドレスまたはパスワードが間違っています</p>}
           <div style={{ marginTop: '30px' }}>
-            <Grid item xs={6}>
-              <p>メールアドレス</p>
+            <Grid item xs={12}>
+              <p>メールアドレスを設定してください</p>
             </Grid>
             <Grid item xs={12}>
               <TextField
@@ -60,8 +61,8 @@ export const LoginScreen = () => {
             </Grid>
           </div>
           <div style={{ marginTop: '30px' }}>
-            <Grid item xs={6}>
-              <p>パスワード</p>
+            <Grid item xs={12}>
+              <p>英数字を含む8文字以上のパスワードを設定してください</p>
             </Grid>
             <Grid item xs={12}>
               <TextField
@@ -76,20 +77,30 @@ export const LoginScreen = () => {
               />
             </Grid>
           </div>
+          <div style={{ marginTop: '30px' }}>
+            <Grid item xs={12}>
+              <p>ユーザーネームを設定してください</p>
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                autoFocus
+                margin="dense"
+                label="ユーザーネームを入力してください"
+                fullWidth
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
+            </Grid>
+          </div>
           <div style={{ textAlign: 'center', margin: '30px auto' }}>
             <Button
               variant="contained"
-              disabled={!email || !password}
+              disabled={!email || !password || !name}
               color="primary"
               onClick={onSubmit}
             >
-              ログイン
-            </Button>
-          </div>
-          <p>まだ登録をお済みでない方は以下ボタンからユーザー登録にお進みください</p>
-          <div style={{ textAlign: 'center', margin: '30px auto' }}>
-            <Button variant="contained" color="primary" onClick={() => history.push('/register')}>
-              新規登録する
+              新規登録
             </Button>
           </div>
         </CardContent>

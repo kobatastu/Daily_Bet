@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { useState, useCallback, createContext } from 'react';
+import { useState, useCallback, useContext, createContext } from 'react';
 
 import type { UserData } from '../serverTypes/userTypes';
 
@@ -17,7 +17,9 @@ const defaultContext: UserContext = {
 
 export const userContext = createContext<UserContext>(defaultContext);
 
-export const useAuth = () => {
+export const useAuth = () => useContext(userContext);
+
+export const useProviderAuth = () => {
   const [user, setUser] = useState<UserData | null>(null);
   const signIn = useCallback(
     (user: UserData) => {

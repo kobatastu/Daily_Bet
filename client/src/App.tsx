@@ -2,32 +2,48 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 
 import { MainRouter } from './router/MainRouter';
 import { LoginScreen } from './screens/LoginScreen/LoginScreen';
-import { userContext, useAuth } from './hooks/useAuth';
+import { RegisterScreen } from './screens/RegisterScreen/RegisterScreen';
+import { userContext, useAuth, useProviderAuth } from './hooks/useAuth';
+
+type Props = {
+  children: JSX.Element;
+};
+
+const PrivateRoute = ({ children }: Props) => {
+  const auth = useAuth();
+  return (
+    <Route
+      path="/main"
+      render={({ location }) =>
+        auth.user ? children : <Redirect to={{ pathname: '/login', state: { from: location } }} />
+      }
+    />
+  );
+};
+
+const Provider = ({ children }: Props) => {
+  const auth = useProviderAuth();
+  return <userContext.Provider value={auth}>{children}</userContext.Provider>;
+};
 
 function App() {
-  const auth = useAuth();
-
   return (
     <div className="App">
-      <userContext.Provider value={auth}>
+      <Provider>
         <Router>
           <Switch>
             <Route exact path="/login">
               <LoginScreen />
             </Route>
-            <Route
-              path="/main"
-              render={({ location }) =>
-                auth.user ? (
-                  <MainRouter />
-                ) : (
-                  <Redirect to={{ pathname: '/login', state: { from: location } }} />
-                )
-              }
-            />
+            <Route exact path="/register">
+              <RegisterScreen />
+            </Route>
+            <PrivateRoute>
+              <MainRouter />
+            </PrivateRoute>
           </Switch>
         </Router>
-      </userContext.Provider>
+      </Provider>
     </div>
   );
 }

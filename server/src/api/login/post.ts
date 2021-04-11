@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { checkLoginInfo } from '../../service/login';
+import { checkLoginInfo } from '../../service/user';
 import { errorCodeMap } from '../../../serverTypes/apiTypes';
 import { guardRunTimeError } from '../../../common/guardRunTimeError';
 import type { PostLoginData } from '../../../serverTypes/userTypes';

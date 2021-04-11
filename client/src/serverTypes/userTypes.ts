@@ -25,6 +25,12 @@ export type PostLoginData = {
   password: string;
 };
 
+export type PostUserData = {
+  email: string;
+  password: string;
+  name: string;
+};
+
 const convertBooleanForMySQL = (flag: number): boolean => {
   if (flag === 1) {
     return true;

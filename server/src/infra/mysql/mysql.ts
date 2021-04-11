@@ -46,8 +46,25 @@ export const getMysqlData = async (sql: string, data?) => {
 export const postMysqlData = async (sql: string, data) => {
   const connection = mysql.createConnection(MYSQL_CONFIG);
   connection.connect();
-  await mutateMysqlData(connection, sql, data).catch((err) => {
-    throw new Error(`runtime:${err}`);
-  });
-  connection.end();
+  await mutateMysqlData(connection, sql, data)
+    .catch((err) => {
+      throw new Error(`runtime:${err}`);
+    })
+    .finally(() => connection.end());
 };
+
+// export const addMysqlData = async (sql: string, data) => {
+//   const connection = mysql.createConnection(MYSQL_CONFIG);
+//   connection.connect();
+//   const mutatedData = await mutateMysqlData(connection, sql, data)
+//     .then(
+//       (queryData) => {
+//         return queryData;
+//       },
+//       (err) => {
+//         throw new Error(`runtime:${err}`);
+//       }
+//     )
+//     .finally(() => connection.end());
+//   return mutatedData;
+// };
