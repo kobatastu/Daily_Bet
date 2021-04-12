@@ -10,6 +10,16 @@ import { useQueryBoard } from '../../hooks/fetcher/useQueryBoard';
 import { useMutationBoard } from '../../hooks/fetcher/useMutationBoard';
 import type { BoardData } from '../../serverTypes/boardTypes';
 
+const setDate = (dateTime: Date) => {
+  const year = dateTime.getFullYear();
+  const month = (dateTime.getMonth() + 1).toString().padStart(2, '0');
+  const date = dateTime.getDate().toString().padStart(2, '0');
+  const hours = dateTime.getHours().toString().padStart(2, '0');
+  const minute = dateTime.getMinutes().toString().padStart(2, '0');
+  const seconds = dateTime.getSeconds().toString().padStart(2, '0');
+  return year + '/' + month + '/' + date + ' ' + hours + ':' + minute + ':' + seconds;
+};
+
 export const BoardScreen = () => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<BoardData[] | null>(null);
@@ -50,7 +60,7 @@ export const BoardScreen = () => {
                     <Grid item>
                       <img
                         alt="プロフィール画像"
-                        src={`${process.env.PUBLIC_URL}/mypic/` + message.picture}
+                        src={process.env.PUBLIC_URL + '/' + message.picture}
                         style={{
                           width: '50px',
                           height: '50px',
@@ -72,7 +82,7 @@ export const BoardScreen = () => {
                         </Grid>
                       </Grid>
                       <Grid item>
-                        <Typography variant="subtitle1">{message.created_at.toString()}</Typography>
+                        <Typography variant="subtitle1">{setDate(message.created_at)}</Typography>
                       </Grid>
                     </Grid>
                   </Grid>

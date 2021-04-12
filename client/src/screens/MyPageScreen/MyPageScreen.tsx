@@ -4,6 +4,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
+import Avatar from '@material-ui/core/Avatar';
 
 import { Loading } from '../components/Loading';
 import { useAuth, useProviderAuth } from '../../hooks/useAuth';
@@ -25,6 +26,17 @@ export const MyPageScreen = () => {
         }}
       >
         <CardContent>
+          <div style={{ textAlign: 'center' }}>
+            <img
+              src={`${process.env.PUBLIC_URL}/${user.picture}`}
+              style={{
+                width: '50%',
+                height: '50%',
+                borderRadius: '50%',
+                border: '1px solid',
+              }}
+            />
+          </div>
           <div style={{ marginTop: '30px' }}>
             <Grid container spacing={3}>
               <Grid item xs={6}>

@@ -4,6 +4,7 @@ import { MainRouter } from './router/MainRouter';
 import { LoginScreen } from './screens/LoginScreen/LoginScreen';
 import { RegisterScreen } from './screens/RegisterScreen/RegisterScreen';
 import { userContext, useAuth, useProviderAuth } from './hooks/useAuth';
+import { ErrorBoundary } from './error/ErrorBoundary';
 
 type Props = {
   children: JSX.Element;
@@ -29,21 +30,23 @@ const Provider = ({ children }: Props) => {
 function App() {
   return (
     <div className="App">
-      <Provider>
-        <Router>
-          <Switch>
-            <Route exact path="/login">
-              <LoginScreen />
-            </Route>
-            <Route exact path="/register">
-              <RegisterScreen />
-            </Route>
-            <PrivateRoute>
-              <MainRouter />
-            </PrivateRoute>
-          </Switch>
-        </Router>
-      </Provider>
+      <ErrorBoundary>
+        <Provider>
+          <Router>
+            <Switch>
+              <Route exact path="/login">
+                <LoginScreen />
+              </Route>
+              <Route exact path="/register">
+                <RegisterScreen />
+              </Route>
+              <PrivateRoute>
+                <MainRouter />
+              </PrivateRoute>
+            </Switch>
+          </Router>
+        </Provider>
+      </ErrorBoundary>
     </div>
   );
 }
