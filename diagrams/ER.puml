@@ -39,4 +39,6 @@ entity "bet_coin" {
   bet_coin_amount [賭けたコインの額]
 }
 users ||--o{ board
+users ||--{ bet_coin
+bet_coin ||--|| bet_contents
 @enduml
